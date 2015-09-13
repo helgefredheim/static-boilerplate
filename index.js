@@ -5,44 +5,38 @@ var app = express();
 var hoganExpress = require('hogan-express');
 
 app.engine('html', hoganExpress);
-app.set('views', __dirname + '/src/templates');
+app.set('views', __dirname + '/src/views');
 app.set('view engine', 'html');	
 
 app.use('/_public', express.static(path.join(__dirname, '_public')));
 
 var config = {
-	sitetitle: "Silder"
+	sitetitle: "Your page title",
+	defaultPage: "pages/page"
 };
 
 var pages = [{
-	urlName: "product",
+	urlPath: "product",
 	templateName: "product",
 	title: "Produkt"
 }, {
-	urlName: "info",
+	urlPath: "info",
 	templateName: "info",
 	title: "Informasjon"
+}, {
+	urlPath: "",
+	templateName: "main"
 }];
 
 _.each(pages, function(page) {
-	app.use("/" + page.urlName, function(req, res) {
-		res.render("page", {
+	app.use("/" + page.urlPath, function(req, res) {
+		res.render(config.defaultPage, {
 			title: page.title,
 			config: config, 
 			partials: {
-				partial: "_pages/" + page.templateName
+				partial: "_parts/" + page.templateName
 			}
 		}); 
-	});
-});
-
-app.use("/", function(req, res) {
-	res.render("page", {
-		title: null,
-		config: config, 
-		partials: {
-			partial: "_pages/index"
-		}
 	});
 });
 
