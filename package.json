@@ -1,0 +1,17 @@
+{
+  "name": "silder",
+  "version": "1.0.0",
+  "description": "Web shop for handmade wodden furniture.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Helge Fredheim",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "hogan-express": "^0.5.2",
+    "path": "^0.11.14",
+    "underscore": "^1.8.3"
+  }
+}
